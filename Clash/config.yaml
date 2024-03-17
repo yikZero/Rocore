@@ -1,0 +1,493 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+external-controller: 0.0.0.0:9090
+clash-for-android:
+  append-system-dns: false
+profile:
+  tracing: true
+experimental:
+  sniff-tls-sni: true
+dns:
+  enable: true
+  listen: 127.0.0.1:8853
+  default-nameserver:
+    - 223.5.5.5
+    - 223.6.6.6
+  ipv6: false
+  enhanced-mode: fake-ip
+  nameserver:
+    - 114.114.114.114
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
+    - tls://120.53.53.53
+    - tls://1.12.12.12
+  fallback:
+    - https://1.0.0.1/dns-query
+    - https://public.dns.iij.jp/dns-query
+    - tls://8.8.4.4:853
+  fallback-filter:
+    geoip: false
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+      - 127.0.0.1/32
+    domain:
+      - +.facebook.com
+      - +.twitter.com
+      - +.google.com
+      - +.googleapis.com
+      - +.google.cn
+      - +.googleapis.cn
+      - +.xn--ngstr-lra8j.com
+      - +.googlevideo.com
+      - +.gvt1.com
+      - +.gmail.com
+      - +.youtube.com
+      - +.youtu.be
+      - +.gvt0.com
+      - +.gvt2.com
+      - +.gvt3.com
+      - +.gstatic.com
+      - +.265.com
+      - +.2mdn.net
+      - +.app-measurement.com
+      - +.c.admob.com
+      - +.clickserve.dartsearch.net
+      - +.crl.pki.goog
+      - +.doubleclick.net
+      - +.firebase-settings.crashlytics.com
+      - +.google-analytics.com
+      - +.googleadservices.com
+      - +.googleanalytics.com
+      - +.googleoptimize.com
+      - +.googlesyndication.com
+      - +.googletagmanager.com
+      - +.googletagservices.com
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - msftconnecttest.com
+    - msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - xbox.*.microsoft.com
+    - xnotify.xboxlive.com
+    - +.ipv6.microsoft.com
+    - +.battlenet.com.cn
+    - +.wotgame.cn
+    - +.wggames.cn
+    - +.wowsgame.cn
+    - +.wargaming.net
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - heartbeat.belkin.com
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - mesu.apple.com
+    - swscan.apple.com
+    - swquery.apple.com
+    - swdownload.apple.com
+    - swcdn.apple.com
+    - swdist.apple.com
+    - lens.l.google.com
+    - stun.l.google.com
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.ff14.sdo.com"
+    - ff.dorado.sdo.com
+    - "*.mcdn.bilivideo.cn"
+    - +.media.dssott.com
+    - +.pvp.net
+proxies:
+  # - {name: "🏠Home - 中国联通", server: example.com, port: 1234, type: ss, cipher: aes-128-cfb, password: 123456, udp: true}
+
+proxy-providers:
+  SG:
+    type: http
+    path: ./profiles/SG.yaml
+    url: "http://example.com"
+    interval: 3600
+    filter: "新加坡"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+  HK:
+    type: http
+    path: ./profiles/HK.yaml
+    url: "http://example.com"
+    interval: 3600
+    filter: "香港"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+  US:
+    type: http
+    path: ./profiles/US.yaml
+    url: "http://example.com"
+    interval: 3600
+    filter: "美国"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+  UK:
+    type: http
+    path: ./profiles/UK.yaml
+    url: "http://example.com"
+    interval: 3600
+    filter: "英国"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+  TR:
+    type: http
+    path: ./profiles/TR.yaml
+    url: "http://example.com"
+    interval: 3600
+    filter: "土耳其"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+  EXP:
+    type: http
+    path: ./profiles/EXP.yaml
+    url: "http://example.com"
+    interval: 3600
+    filter: "实验性"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+  ALL:
+    type: http
+    path: ./profiles/ALL.yaml
+    url: "http://example.com"
+    interval: 3600
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+
+proxy-groups:
+  - name: PROXY
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    proxies:
+      - SG
+      - HK
+      - US
+      - UK
+      - TR
+      - EXP
+      - ALL
+      - DIRECT
+  - name: AIGC
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    proxies:
+      - SG
+      - TR
+      - ALL
+      - DIRECT
+  - name: Media
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    proxies:
+      - SG
+      - HK
+      - US
+  - name: Youtube
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    proxies:
+      - EXP
+      - SG
+      - HK
+  - name: Home
+    type: select
+    proxies:
+      # - 🏠Home - 中国联通
+      - DIRECT
+
+  # 网络下载过滤
+  - name: SG
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    use:
+      - SG
+  - name: HK
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    use:
+      - HK
+  - name: US
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    use:
+      - US
+  - name: UK
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    use:
+      - UK
+  - name: TR
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    use:
+      - TR
+  - name: EXP
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    use:
+      - EXP
+  - name: ALL
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 3600
+    use:
+      - ALL
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+  openai:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
+    path: ./ruleset/openai.yaml
+    interval: 86400
+  youtube:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
+    path: ./ruleset/youtube.yaml
+    interval: 86400
+  netflix:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml"
+    path: ./ruleset/netflix.yaml
+    interval: 86400
+  disney:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml"
+    path: ./ruleset/disney.yaml
+    interval: 86400
+  claude:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml"
+    path: ./ruleset/claude.yaml
+    interval: 86400
+  icloud:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/iCloud/iCloud.yaml"
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+  apple:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy.yaml"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+  wechat:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.yaml"
+    path: ./ruleset/wechat.yaml
+    interval: 86400
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+
+rules:
+  - PROCESS-NAME,v2ray,DIRECT
+  - PROCESS-NAME,xray,DIRECT
+  - PROCESS-NAME,naive,DIRECT
+  - PROCESS-NAME,trojan,DIRECT
+  - PROCESS-NAME,trojan-go,DIRECT
+  - PROCESS-NAME,ss-local,DIRECT
+  - PROCESS-NAME,privoxy,DIRECT
+  - PROCESS-NAME,leaf,DIRECT
+  - PROCESS-NAME,v2ray.exe,DIRECT
+  - PROCESS-NAME,xray.exe,DIRECT
+  - PROCESS-NAME,naive.exe,DIRECT
+  - PROCESS-NAME,trojan.exe,DIRECT
+  - PROCESS-NAME,trojan-go.exe,DIRECT
+  - PROCESS-NAME,ss-local.exe,DIRECT
+  - PROCESS-NAME,privoxy.exe,DIRECT
+  - PROCESS-NAME,leaf.exe,DIRECT
+  - PROCESS-NAME,Surge,DIRECT
+  - PROCESS-NAME,Surge 2,DIRECT
+  - PROCESS-NAME,Surge 3,DIRECT
+  - PROCESS-NAME,Surge 4,DIRECT
+  - PROCESS-NAME,Surge%202,DIRECT
+  - PROCESS-NAME,Surge%203,DIRECT
+  - PROCESS-NAME,Surge%204,DIRECT
+  - PROCESS-NAME,Thunder,DIRECT
+  - PROCESS-NAME,DownloadService,DIRECT
+  - PROCESS-NAME,qBittorrent,DIRECT
+  - PROCESS-NAME,Transmission,DIRECT
+  - PROCESS-NAME,fdm,DIRECT
+  - PROCESS-NAME,aria2c,DIRECT
+  - PROCESS-NAME,Folx,DIRECT
+  - PROCESS-NAME,NetTransport,DIRECT
+  - PROCESS-NAME,uTorrent,DIRECT
+  - PROCESS-NAME,WebTorrent,DIRECT
+  - PROCESS-NAME,aria2c.exe,DIRECT
+  - PROCESS-NAME,BitComet.exe,DIRECT
+  - PROCESS-NAME,fdm.exe,DIRECT
+  - PROCESS-NAME,NetTransport.exe,DIRECT
+  - PROCESS-NAME,qbittorrent.exe,DIRECT
+  - PROCESS-NAME,Thunder.exe,DIRECT
+  - PROCESS-NAME,ThunderVIP.exe,DIRECT
+  - PROCESS-NAME,transmission-daemon.exe,DIRECT
+  - PROCESS-NAME,transmission-qt.exe,DIRECT
+  - PROCESS-NAME,uTorrent.exe,DIRECT
+  - PROCESS-NAME,WebTorrent.exe,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - RULE-SET,private,DIRECT
+  - RULE-SET,reject,PROXY
+  - RULE-SET,icloud,DIRECT
+  - RULE-SET,apple,DIRECT
+  - RULE-SET,proxy,PROXY
+  - RULE-SET,openai,AIGC
+  - RULE-SET,youtube,Youtube
+  - RULE-SET,netflix,Media
+  - RULE-SET,disney,Media
+  - RULE-SET,claude,AIGC
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,wechat,DIRECT
+  - IP-CIDR,192.168.0.0/16,Home
+  - IP-CIDR,0.0.0.0/8,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,169.254.0.0/16,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.0.0.0/24,DIRECT
+  - IP-CIDR,192.0.2.0/24,DIRECT
+  - IP-CIDR,192.88.99.0/24,DIRECT
+  - IP-CIDR,198.18.0.0/15,DIRECT
+  - IP-CIDR,198.51.100.0/24,DIRECT
+  - IP-CIDR,203.0.113.0/24,DIRECT
+  - IP-CIDR,224.0.0.0/3,DIRECT
+  - IP-CIDR6,::1/128,DIRECT
+  - IP-CIDR6,fc00::/7,DIRECT
+  - IP-CIDR6,fe80::/10,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,PROXY

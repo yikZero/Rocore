@@ -1,0 +1,19 @@
+[Proxy Group]
+# Default
+Proxy = fallback, SG, HK, TW, US, TR, EXP
+OpenAI = select, SG, TR
+Netflix = fallback, SG, HK
+Youtube = fallback, EXP, SG, Proxy, TR
+Nintendo = select, JP, US, SG, EXP
+Turkey = select, TR, Proxy
+Apple = select, DIRECT, SG, US, TR
+Final = select, Proxy, DIRECT
+# FlowerCloud
+FlowerCloud = select, policy-path=https://example.com, hidden=1
+SG = fallback, include-other-group=FlowerCloud, policy-regex-filter=^(?=.*新加坡)(?!.*实验性).*$
+HK = fallback, include-other-group=FlowerCloud, policy-regex-filter=^(?=.*香港)(?!.*实验性).*$
+TW = fallback, include-other-group=FlowerCloud, policy-regex-filter=^(?=.*台湾)(?!.*实验性).*$
+US = fallback, include-other-group=FlowerCloud, policy-regex-filter=^(?=.*美国)(?!.*实验性).*$
+JP = fallback, include-other-group=FlowerCloud, policy-regex-filter=^(?=.*日本)(?!.*实验性).*$
+TR = fallback, include-other-group=FlowerCloud, policy-regex-filter=^(?=.*土耳其)(?!.*实验性).*$
+EXP = select, include-other-group=FlowerCloud, policy-regex-filter=^(?=.*实验性).*$
