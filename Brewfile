@@ -70,6 +70,7 @@ mas "Microsoft Word", id: 462054704
 mas "Quantumult X", id: 1443988620
 vscode "bradlc.vscode-tailwindcss"
 vscode "dbaeumer.vscode-eslint"
+vscode "eamodio.gitlens"
 vscode "esbenp.prettier-vscode"
 vscode "formulahendry.auto-close-tag"
 vscode "foxundermoon.next-js"
